@@ -1,7 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Zap, Menu, X } from "lucide-react";
+import { Zap, Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,10 +26,14 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  const navLinks = [
+  const mainLinks = [
+    { label: "Home", href: "/" },
     { label: "Features", href: "/features" },
-    { label: "How It Works", href: "/how-it-works" },
     { label: "Pricing", href: "/pricing" },
+  ];
+
+  const moreLinks = [
+    { label: "How It Works", href: "/how-it-works" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];
@@ -54,7 +64,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => (
+            {mainLinks.map((link) => (
               <Link
                 key={link.label}
                 to={link.href}
@@ -67,6 +77,30 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+
+            {/* More Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-accent/50">
+                  More
+                  <ChevronDown className="h-3.5 w-3.5" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-40">
+                {moreLinks.map((link) => (
+                  <DropdownMenuItem key={link.label} asChild>
+                    <Link 
+                      to={link.href}
+                      className={`w-full cursor-pointer ${
+                        isActive(link.href) ? "bg-accent text-foreground font-medium" : ""
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Desktop Actions */}
@@ -104,7 +138,8 @@ const Navbar = () => {
           <div className="flex flex-col space-y-4">
             {/* Mobile Navigation Links */}
             <div className="flex flex-col space-y-2">
-              {navLinks.map((link) => (
+              {/* Main Links */}
+              {mainLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.href}
@@ -117,6 +152,26 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+              
+              {/* More Links Section */}
+              <div className="pt-2">
+                <div className="text-xs font-medium text-muted-foreground px-3 pb-1">
+                  More
+                </div>
+                {moreLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className={`rounded-md px-3 py-2 text-sm transition-colors block ${
+                      isActive(link.href)
+                        ? "bg-accent text-foreground font-medium"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Mobile Actions */}
@@ -133,7 +188,7 @@ const Navbar = () => {
       </div>
 
       {/* Spacer for fixed navbar */}
-      <div className="h-6" />
+      <div className="h-5" />
     </>
   );
 };
