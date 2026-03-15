@@ -408,25 +408,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map/Office Location */}
-      <section className="py-16 relative">
-        <div className="container">
-          <div className="rounded-xl overflow-hidden border border-border/50 bg-muted h-[300px] relative">
-            {/* Placeholder for map - replace with actual map integration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-8 w-8 text-primary mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">
-                  San Francisco Office<br />
-                  548 Market St, PMB 72296<br />
-                  San Francisco, CA 94104
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+    
       {/* CTA Section */}
       <section className="py-16 md:py-24 relative">
         <div className="container">
