@@ -20,11 +20,13 @@ import About from "./pages/AboutPage";
 import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
 import Features from "./pages/Features";
+import { ThemeProvider } from "./components/ui/Theme-Provider";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="dark" storageKey="devinsight-theme">
     <TooltipProvider>
       <BrowserRouter>
         <Navbar />
@@ -49,7 +51,9 @@ const App = () => (
       </BrowserRouter>
       <Toaster />
       <Sonner />
+
     </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

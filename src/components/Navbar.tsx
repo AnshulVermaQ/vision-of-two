@@ -21,19 +21,14 @@ const Navbar = () => {
   }, [location]);
 
   const navLinks = [
- 
     { label: "Features", href: "/features" },
-
-    { label: "How it works", href: "/how-it-works" },
-       { label: "Pricing", href: "/pricing" },
-     { label: "About", href: "/about" },
-    { label: "Contact us", href: "/contact" }
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const isActive = (href: string) => {
-    if (href === "/#features") {
-      return location.pathname === "/" && location.hash === "#features";
-    }
     return location.pathname === href;
   };
 
@@ -137,7 +132,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="h-5" />
+      {/* Spacer for fixed navbar */}
+      <div className="h-6" />
     </>
   );
 };
