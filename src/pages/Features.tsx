@@ -220,7 +220,7 @@ const Features = () => {
                   {/* CTA */}
                   <Button variant="link" className="group h-auto p-0 text-primary" asChild>
                     <Link to={`/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                      Learn more
+                      
                       <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
@@ -387,7 +387,6 @@ const Features = () => {
         </div>
       </section>
 
-      {/* Testimonials Preview */}
       <section className="py-16 relative">
         <div className="container">
           <div className="text-center mb-12">
@@ -399,47 +398,7 @@ const Features = () => {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                name: "Sarah Chen",
-                role: "Senior Developer at Google",
-                quote: "DevInsight helped me identify gaps in my GitHub profile that I never noticed. Three months later, I got my dream job.",
-                rating: 5
-              },
-              {
-                name: "Marcus Rodriguez",
-                role: "Tech Lead at Microsoft",
-                quote: "The resume analysis alone was worth it. My interview calls increased by 3x after optimizing with their suggestions.",
-                rating: 5
-              },
-              {
-                name: "Priya Patel",
-                role: "Full Stack Developer",
-                quote: "Finally, a tool that understands what recruiters actually look for. The skill roadmap helped me focus on exactly what I needed.",
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                className="rounded-xl border border-border/50 bg-background p-6"
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-500 text-yellow-500" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground mb-4">"{testimonial.quote}"</p>
-                <div>
-                  <p className="font-medium text-sm">{testimonial.name}</p>
-                  <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+
         </div>
       </section>
 

@@ -21,11 +21,13 @@ const Navbar = () => {
   }, [location]);
 
   const navLinks = [
-    { label: "Pricing", href: "/pricing" },
-    { label: "About", href: "/about" },
-    { label: "Contact us", href: "/contact" },
+ 
     { label: "Features", href: "/features" },
-    { label: "How it works", href: "/how-it-works" }
+
+    { label: "How it works", href: "/how-it-works" },
+       { label: "Pricing", href: "/pricing" },
+     { label: "About", href: "/about" },
+    { label: "Contact us", href: "/contact" }
   ];
 
   const isActive = (href: string) => {
