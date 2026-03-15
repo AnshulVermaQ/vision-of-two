@@ -14,15 +14,16 @@ import CareerRoadmap from "./pages/CareerRoadmap";
 import BulletGenerator from "./pages/BulletGenerator";
 import PortfolioFeedback from "./pages/PortfolioFeedback";
 import NotFound from "./pages/NotFound";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -36,7 +37,10 @@ const App = () => (
           <Route path="/portfolio-feedback" element={<PortfolioFeedback />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
+      <Toaster />
+      <Sonner />
     </TooltipProvider>
   </QueryClientProvider>
 );
