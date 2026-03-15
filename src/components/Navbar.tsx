@@ -24,6 +24,7 @@ const Navbar = () => {
     { label: "Features", href: "/#features" },
     { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },
+    { label: "Contact us", href: "/contact" },
   ];
 
   const isActive = (href: string) => {

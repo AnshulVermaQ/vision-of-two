@@ -18,6 +18,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import About from "./pages/AboutPage";
 import HowItWorks from "./pages/HowItWorks";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/portfolio-feedback" element={<PortfolioFeedback />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/about" element = {<About/>} />
+          <Route path="/contact" element = {<Contact/>} />
           <Route path = "how-it-works" element = {<HowItWorks/>} />
         </Routes>
         <Footer />
