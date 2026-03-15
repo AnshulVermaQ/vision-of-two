@@ -171,10 +171,10 @@ const About = () => {
               className="mt-10 flex flex-wrap items-center justify-center gap-4"
             >
               <Button size="lg" asChild>
-                <Link to="/dashboard">Start Your Journey</Link>
+                <Link to="/pricing">Start Your Journey</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link to="/#features">See How It Works</Link>
+                <Link to="/how-it-works">See How It Works</Link>
               </Button>
             </motion.div>
           </div>

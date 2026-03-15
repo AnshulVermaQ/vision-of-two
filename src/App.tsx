@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import About from "./pages/AboutPage";
+import HowItWorks from "./pages/HowItWorks";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/portfolio-feedback" element={<PortfolioFeedback />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/about" element = {<About/>} />
+          <Route path = "how-it-works" element = {<HowItWorks/>} />
         </Routes>
         <Footer />
       </BrowserRouter>
