@@ -1,13 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Zap, Menu, X, ChevronDown } from "lucide-react";
+import { Zap, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,15 +23,6 @@ const Navbar = () => {
   const navLinks = [
     { label: "Features", href: "/#features" },
     { label: "Pricing", href: "/pricing" },
-    { 
-      label: "Resources", 
-      dropdown: [
-        { label: "Documentation", href: "/docs" },
-        { label: "API Reference", href: "/api" },
-        { label: "Blog", href: "/blog" },
-        { label: "Community", href: "/community" },
-      ]
-    },
     { label: "About", href: "/about" },
   ];
 
@@ -70,46 +55,19 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => {
-              if (link.dropdown) {
-                return (
-                  <DropdownMenu key={link.label}>
-                    <DropdownMenuTrigger asChild>
-                      <button className="flex items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-accent">
-                        {link.label}
-                        <ChevronDown className="h-3.5 w-3.5" />
-                      </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="center" className="w-48">
-                      {link.dropdown.map((item) => (
-                        <DropdownMenuItem key={item.label} asChild>
-                          <Link 
-                            to={item.href}
-                            className="w-full cursor-pointer"
-                          >
-                            {item.label}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                );
-              }
-              
-              return (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                    isActive(link.href)
-                      ? "bg-accent text-foreground font-medium"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                  isActive(link.href)
+                    ? "bg-accent text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           {/* Desktop Actions */}
@@ -147,42 +105,19 @@ const Navbar = () => {
           <div className="flex flex-col space-y-4">
             {/* Mobile Navigation Links */}
             <div className="flex flex-col space-y-2">
-              {navLinks.map((link) => {
-                if (link.dropdown) {
-                  return (
-                    <div key={link.label} className="space-y-2">
-                      <div className="text-sm font-medium text-foreground px-3">
-                        {link.label}
-                      </div>
-                      <div className="ml-4 flex flex-col space-y-2">
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.label}
-                            to={item.href}
-                            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-accent"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-                
-                return (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                      isActive(link.href)
-                        ? "bg-accent text-foreground font-medium"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                    isActive(link.href)
+                      ? "bg-accent text-foreground font-medium"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
             {/* Mobile Actions */}
@@ -198,8 +133,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Spacer for fixed navbar */}
-      <div className="h-16" />
+      <div className="h-8" />
     </>
   );
 };

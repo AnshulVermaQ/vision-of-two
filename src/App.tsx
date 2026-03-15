@@ -16,6 +16,7 @@ import PortfolioFeedback from "./pages/PortfolioFeedback";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import About from "./pages/AboutPage";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/bullet-generator" element={<BulletGenerator />} />
           <Route path="/portfolio-feedback" element={<PortfolioFeedback />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/about" element = {<About/>} />
         </Routes>
         <Footer />
       </BrowserRouter>
