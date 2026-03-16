@@ -113,7 +113,6 @@ const Navbar = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="rounded-md p-2 text-muted-foreground hover:text-foreground hover:bg-accent md:hidden"
