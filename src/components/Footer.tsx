@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin, Mail } from "lucide-react"; // Removed Zap import
+import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -38,7 +38,7 @@ const Footer = () => {
     { icon: Github, href: "https://github.com", label: "GitHub" },
     { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:hello@leafai.com", label: "Email" }, // Updated email domain
+    { icon: Mail, href: "mailto:hello@leafai.com", label: "Email" },
   ];
 
   return (
@@ -48,27 +48,23 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 group">
-              {/* Icon Container with Leaf Image */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/10 group-hover:border-primary/30 transition-all duration-300">
+            <Link to="/" className="flex items-center group">
+              {/* Large Logo Only */}
+              <div className="flex h-24 w-24 items-center justify-center rounded-xl overflow-hidden transition-all duration-300 shadow-lg">
                 <img 
-                  src="/leafai_icon_bold.png" 
+                  src="/leaf.png" 
                   alt="Leaf AI" 
-                  className="h-6 w-6 object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              {/* Text Logo */}
-              <span className="text-xl font-semibold tracking-tight text-foreground">
-                Leaf<span className="text-gradient-sage">AI</span>
-              </span>
             </Link>
             
-            <p className="mt-4 max-w-md text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-6 max-w-md text-sm text-muted-foreground leading-relaxed">
               Leaf AI analyzes your code and credentials to find the shortest path to your next role. 
               Resume, GitHub, portfolio — one unified score.
             </p>
 
-            {/* Social Links - Moved to brand section for better visibility */}
+            {/* Social Links */}
             <div className="flex items-center gap-4 mt-6">
               {socialLinks.map((social) => {
                 const Icon = social.icon;

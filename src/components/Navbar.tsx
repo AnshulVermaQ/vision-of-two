@@ -51,21 +51,16 @@ const Navbar = () => {
             : "border-transparent bg-background/80 backdrop-blur-xl"
         }`}
       >
-        <div className="container flex h-20 items-center justify-between">
-          {/* Logo with Icon - Larger Size */}
-          <Link to="/" className="flex items-center gap-3 group">
-            {/* Icon Container - Larger */}
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 group-hover:border-primary/40 transition-all duration-300 shadow-lg">
+        <div className="container flex h-24 items-center justify-between"> {/* Increased from h-20 to h-24 */}
+          {/* Logo - Extra Large */}
+          <Link to="/" className="flex items-center group">
+            <div className="flex h-28 w-28 items-center justify-center rounded-xl overflow-hidden transition-all duration-300 shadow-xl"> {/* Increased from h-20 w-20 to h-28 w-28 */}
               <img 
-                src="/leafai_icon_bold.png" 
+                src="leaf.png" 
                 alt="Leaf AI" 
-                className="h-7 w-7 object-contain group-hover:scale-110 transition-transform duration-300"
+                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
               />
             </div>
-            {/* Text Logo - Larger */}
-            <span className="text-xl font-bold tracking-tight text-foreground">
-              Leaf<span className="text-gradient-primary text-2xl">AI</span>
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -109,7 +104,7 @@ const Navbar = () => {
             </DropdownMenu>
           </div>
 
-          {/* Desktop Actions - Larger */}
+          {/* Desktop Actions */}
           <div className="hidden items-center gap-3 md:flex">
             <Button variant="ghost" size="lg" asChild className="text-base px-5 py-2.5">
               <Link to="/signin">Log in</Link>
@@ -136,7 +131,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-x-0 top-20 z-40 transform border-b border-border/50 bg-background/95 backdrop-blur-xl transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-x-0 top-24 z-40 transform border-b border-border/50 bg-background/95 backdrop-blur-xl transition-transform duration-300 ease-in-out md:hidden ${
           isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -193,8 +188,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Spacer for fixed navbar */}
-      <div className="h-8" />
+      {/* Spacer for fixed navbar - Updated to match new height */}
+      <div className="h-8" /> {/* Changed from h-6 to h-24 to match navbar height */}
     </>
   );
 };
