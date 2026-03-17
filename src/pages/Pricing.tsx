@@ -10,7 +10,7 @@ const plans = [
     name: "Free",
     price: "$0",
     period: "forever",
-    description: "Try DevInsight with basic analysis.",
+    description: "Try LeafAI with basic analysis.",
     features: [
       "3 analyses per month",
       "ATS resume scoring",

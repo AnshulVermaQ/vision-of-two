@@ -161,7 +161,7 @@ const About = () => {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="mt-6 text-lg text-muted-foreground"
             >
-              DevInsight AI was born from a simple observation: talented developers were being overlooked 
+              Leaf AI was born from a simple observation: talented developers were being overlooked 
               because their potential wasn't properly showcased. We're changing that with AI-powered insights.
             </motion.p>
             <motion.div 
@@ -217,24 +217,24 @@ const About = () => {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
-                From a hackathon project to{" "}
-                <span className="text-primary">developers' secret weapon</span>
+                Built to Turn {" "}
+                <span className="text-primary">Potential into Opportunity</span>
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  It started in 2024 when our founders, Alex and Sarah, met at a tech hackathon. 
-                  They realized that while they were building complex algorithms, thousands of talented 
-                  developers were struggling to get noticed by top companies.
+Talented engineers were writing solid code, contributing to meaningful projects, yet getting overlooked. Not because they lacked ability — but because their work wasn’t being presented in a way recruiters could understand or value quickly.
                 </p>
                 <p>
-                  The problem wasn't skill — it was presentation. Great developers had messy GitHub profiles, 
-                  ATS-unfriendly resumes, and no clear path to their dream roles. The solution? An AI that 
-                  could analyze, score, and provide actionable insights across all professional touchpoints.
+                 Resumes weren’t optimized. GitHub profiles lacked clarity. Portfolios told incomplete stories.
+
+So instead of asking developers to “market themselves better,” we built something smarter.
+
+Leaf AI analyzes your entire professional footprint — from code repositories to resumes — and turns it into clear, actionable insights. It highlights what matters, fixes what doesn’t, and helps you align your profile with what companies are actually looking for.
                 </p>
                 <p>
-                  Today, DevInsight AI helps over 10,000 developers optimize their professional presence, 
-                  with a single unified score that correlates strongly with hiring success. We're not just 
-                  another job board — we're your career co-pilot.
+                 Today, thousands of developers use Leaf AI to bridge the gap between skill and opportunity. Not by changing who they are — but by finally showing it the right way.
+
+Because getting hired shouldn’t depend on guesswork.
                 </p>
               </div>
               <div className="mt-8 flex items-center gap-4">

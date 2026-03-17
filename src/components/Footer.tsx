@@ -1,4 +1,4 @@
-import { Zap, Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Github, Twitter, Linkedin, Mail } from "lucide-react"; // Removed Zap import
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -38,7 +38,7 @@ const Footer = () => {
     { icon: Github, href: "https://github.com", label: "GitHub" },
     { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:hello@devinsight.ai", label: "Email" },
+    { icon: Mail, href: "mailto:hello@leafai.com", label: "Email" }, // Updated email domain
   ];
 
   return (
@@ -48,31 +48,58 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-                <Zap className="h-4 w-4 text-primary-foreground" />
+            <Link to="/" className="flex items-center gap-2 group">
+              {/* Icon Container with Leaf Image */}
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/10 group-hover:border-primary/30 transition-all duration-300">
+                <img 
+                  src="/leafai_icon_bold.png" 
+                  alt="Leaf AI" 
+                  className="h-6 w-6 object-contain group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
-              <span className="text-lg font-semibold text-foreground">Leaf AI</span>
-            </div>
+              {/* Text Logo */}
+              <span className="text-xl font-semibold tracking-tight text-foreground">
+                Leaf<span className="text-gradient-sage">AI</span>
+              </span>
+            </Link>
             
             <p className="mt-4 max-w-md text-sm text-muted-foreground leading-relaxed">
-             LeafAI analyzes your code and credentials to find the shortest path to your next role. 
+              Leaf AI analyzes your code and credentials to find the shortest path to your next role. 
               Resume, GitHub, portfolio — one unified score.
             </p>
+
+            {/* Social Links - Moved to brand section for better visibility */}
+            <div className="flex items-center gap-4 mt-6">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                    aria-label={social.label}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           {/* Links Sections */}
           {footerLinks.map((section) => (
             <div key={section.title}>
-              <h3 className="text-sm font-semibold text-foreground mb-3">
+              <h3 className="text-sm font-semibold text-foreground mb-4">
                 {section.title}
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -91,36 +118,17 @@ const Footer = () => {
               © {currentYear} Leaf AI. All rights reserved.
             </p>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-4">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    aria-label={social.label}
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                );
-              })}
-            </div>
-
             {/* Legal Links */}
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <Link to="/terms" className="hover:text-foreground transition-colors">
+              <Link to="/terms" className="hover:text-primary transition-colors">
                 Terms
               </Link>
               <span>•</span>
-              <Link to="/privacy" className="hover:text-foreground transition-colors">
+              <Link to="/privacy" className="hover:text-primary transition-colors">
                 Privacy
               </Link>
               <span>•</span>
-              <Link to="/cookies" className="hover:text-foreground transition-colors">
+              <Link to="/cookies" className="hover:text-primary transition-colors">
                 Cookies
               </Link>
             </div>

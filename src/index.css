@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,61 +8,55 @@
 
 @layer base {
   :root {
-    --background: 222 47% 4%;
-    --foreground: 210 40% 98%;
+    --background: 215 30% 5%;
+    --foreground: 210 20% 92%;
 
-    --card: 222 47% 7%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 30% 7%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 222 47% 7%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 30% 7%;
+    --popover-foreground: 210 20% 92%;
 
-    /* Premium Gold/Bronze gradient colors */
-    --primary: 42 78% 55%; /* Warm gold */
+    /* Premium deep blue palette */
+    --primary: 210 60% 50%; /* Ocean blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 37 67% 45%; /* Bronze */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 40% 25%; /* Deep navy */
+    --secondary-foreground: 210 20% 92%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 215 30% 15%;
+    --muted-foreground: 210 15% 65%;
 
-    --accent: 35 45% 25%; /* Deep bronze accent */
-    --accent-foreground: 210 40% 98%;
+    --accent: 195 70% 45%; /* Teal accent */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 60% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 142 71% 45%;
+    --success: 160 45% 45%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
+    --warning: 35 80% 50%;
     --warning-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 42 78% 55%; /* Matching gold */
+    --border: 215 30% 18%;
+    --input: 215 30% 15%;
+    --ring: 210 60% 50%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 222 47% 4%;
-    --sidebar-foreground: 215 20% 65%;
-    --sidebar-primary: 42 78% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 35 45% 20%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 42 78% 55%;
-
-    /* Custom tokens */
-    --surface: 222 47% 7%;
-    --surface-hover: 217 33% 14%;
-    --gold-glow: 42 78% 55%;
-    --emerald: 142 71% 45%;
-
-    --shadow-card: 0 0 0 1px rgba(255,255,255,0.07), 0 8px 16px -4px rgba(0,0,0,0.4);
-    --shadow-card-hover: 0 0 0 1px rgba(212, 175, 55, 0.3), 0 12px 20px -4px rgba(0,0,0,0.5);
-    --shadow-elevated: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 6px -1px rgba(0,0,0,0.2);
+    /* Custom tokens - Premium blue palette */
+    --ocean: 210 60% 50%;
+    --navy: 215 50% 20%;
+    --sky: 200 70% 65%;
+    --teal: 195 70% 45%;
+    --cobalt: 220 70% 45%;
+    --steel: 210 20% 55%;
+    --pearl: 210 15% 85%;
+    
+    --shadow-card: 0 0 0 1px rgba(255,255,255,0.02), 0 8px 24px -8px rgba(0,0,0,0.6);
+    --shadow-card-hover: 0 0 0 1px rgba(100, 150, 220, 0.2), 0 16px 32px -8px rgba(0,0,0,0.7);
+    --shadow-elevated: 0 0 0 1px rgba(255,255,255,0.02), 0 4px 12px -4px rgba(0,0,0,0.5);
   }
 }
 
@@ -74,53 +69,102 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
     letter-spacing: -0.01em;
-    font-size: 16px; /* Base font size increased */
+    font-size: 16px;
+    font-weight: 300;
+    color: hsl(210 15% 85%);
   }
 
-  /* Increased font sizes for headings */
+  /* Premium typography with elegant weights */
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: hsl(210 20% 92%);
+  }
+
   h1 {
-    @apply text-5xl md:text-7xl font-bold tracking-tight;
+    @apply text-5xl md:text-7xl font-medium tracking-tight;
+    line-height: 1.1;
   }
 
   h2 {
-    @apply text-4xl md:text-5xl font-semibold tracking-tight;
+    @apply text-4xl md:text-5xl font-medium tracking-tight;
+    line-height: 1.2;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl font-semibold;
+    @apply text-2xl md:text-3xl font-medium;
+    line-height: 1.3;
   }
 
   h4 {
     @apply text-xl md:text-2xl font-medium;
+    line-height: 1.4;
   }
 
   p {
     @apply text-base md:text-lg leading-relaxed;
+    font-weight: 300;
+    color: hsl(210 15% 75%);
   }
 
-  code, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+  a {
+    @apply transition-colors duration-300;
+    color: hsl(210 15% 75%);
+  }
+
+  a:hover {
+    color: hsl(210 60% 65%);
   }
 }
 
 @layer utilities {
-  /* Premium gold gradient */
+  /* Premium blue gradients */
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #D4AF37, #FBBF24, #B8860B);
+    background-image: linear-gradient(135deg, #6BA6E0, #3A7BC8, #1E4A8C);
   }
 
-  /* Alternative premium gradient */
-  .text-gradient-premium {
+  .text-gradient-ocean {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #C5A028, #E5B73B, #A67C00);
+    background-image: linear-gradient(135deg, #7FB0E8, #4A8FD0, #2A6BB0);
+  }
+
+  .text-gradient-sky {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #A0C8F0, #70A8E0, #4088C0);
+  }
+
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #60C0D0, #30A0B8, #1080A0);
+  }
+
+  .text-gradient-cobalt {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #5080D0, #3060B0, #104090);
+  }
+
+  .text-gradient-steel {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #90A0B8, #7088A8, #506888);
+  }
+
+  .text-gradient-pearl-blue {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #E0E8F5, #C0D0E8, #A0B8D8);
   }
 
   /* Elegant serif font for headings */
   .font-heading-premium {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  }
+
+  .font-serif-premium {
     font-family: 'Playfair Display', serif;
   }
 
+  /* Shadow utilities */
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
@@ -133,6 +177,7 @@
     box-shadow: var(--shadow-elevated);
   }
 
+  /* Background utilities */
   .bg-surface {
     background-color: hsl(var(--surface));
   }
@@ -141,15 +186,24 @@
     background-color: hsl(var(--surface-hover));
   }
 
-  /* Gold glow effects */
-  .glow-gold {
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.25), 0 0 60px rgba(212, 175, 55, 0.1);
+  /* Premium glow effects - blue */
+  .glow-premium {
+    box-shadow: 0 0 30px rgba(70, 130, 200, 0.15), 0 0 60px rgba(70, 130, 200, 0.08);
   }
 
-  .glow-emerald {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+  .glow-ocean {
+    box-shadow: 0 0 30px rgba(60, 120, 200, 0.12), 0 0 60px rgba(60, 120, 200, 0.05);
   }
 
+  .glow-teal {
+    box-shadow: 0 0 30px rgba(40, 160, 180, 0.1), 0 0 60px rgba(40, 160, 180, 0.05);
+  }
+
+  .glow-cobalt {
+    box-shadow: 0 0 30px rgba(40, 80, 180, 0.12), 0 0 60px rgba(40, 80, 180, 0.05);
+  }
+
+  /* Animations */
   .animate-scan {
     animation: scan 2s ease-in-out infinite;
   }
@@ -163,35 +217,186 @@
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  /* Larger text utilities */
-  .text-xl {
-    font-size: 1.5rem !important;
-    line-height: 2rem !important;
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 
-  .text-2xl {
-    font-size: 2rem !important;
-    line-height: 2.5rem !important;
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 
-  .text-3xl {
-    font-size: 2.5rem !important;
-    line-height: 3rem !important;
+  .animate-wave {
+    animation: wave 8s ease-in-out infinite;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+  }
+
+  /* Text colors */
+  .text-premium-primary {
+    color: hsl(210 60% 65%);
+  }
+
+  .text-premium-secondary {
+    color: hsl(215 40% 60%);
+  }
+
+  .text-premium-accent {
+    color: hsl(195 70% 55%);
+  }
+
+  .text-premium-muted {
+    color: hsl(210 15% 65%);
+  }
+
+  .text-premium-light {
+    color: hsl(210 20% 85%);
+  }
+
+  /* Water/blue decorations */
+  .water-decoration {
+    position: relative;
+  }
+  
+  .water-decoration::after {
+    content: "🌊";
+    position: absolute;
+    font-size: 1rem;
+    opacity: 0.1;
+    transform: rotate(-5deg);
+    pointer-events: none;
+  }
+
+  .wave-decoration {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .wave-decoration::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(70, 130, 200, 0.3), transparent);
+    animation: wave 3s ease-in-out infinite;
+  }
+
+  /* Premium border with blue gradient */
+  .border-premium {
+    border: 1px solid;
+    border-image: linear-gradient(135deg, rgba(70, 130, 200, 0.3), rgba(40, 80, 160, 0.1)) 1;
+  }
+
+  .border-ocean {
+    border: 1px solid rgba(70, 130, 200, 0.2);
   }
 }
 
-/* Premium button style */
+/* Premium button style - Blue */
 .btn-premium {
-  background: linear-gradient(135deg, #D4AF37, #B8860B);
-  color: white;
-  font-weight: 600;
+  background: linear-gradient(135deg, #1E3A5F, #0A1A2F);
+  color: hsl(210 20% 90%);
+  font-weight: 400;
   padding: 0.75rem 2rem;
   border-radius: 9999px;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(70, 130, 200, 0.2);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.btn-premium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(70, 130, 200, 0.15), transparent);
+  transition: left 0.7s ease;
 }
 
 .btn-premium:hover {
-  background: linear-gradient(135deg, #E5B73B, #C5A028);
+  background: linear-gradient(135deg, #2A4A70, #1A2A40);
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 10px 30px -8px rgba(30, 60, 120, 0.5);
+  border-color: rgba(70, 130, 200, 0.4);
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+/* Secondary button style - Blue outline */
+.btn-outline-premium {
+  background: transparent;
+  border: 1px solid rgba(70, 130, 200, 0.3);
+  color: hsl(210 60% 70%);
+  font-weight: 400;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  transition: all 0.4s ease;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.btn-outline-premium:hover {
+  background: rgba(70, 130, 200, 0.05);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -8px rgba(30, 60, 120, 0.4);
+  border-color: rgba(70, 130, 200, 0.5);
+}
+
+/* Logo text style - Blue */
+.logo-premium {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #7FB0E8, #3A7BC8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card styles */
+.card-premium {
+  background: linear-gradient(135deg, hsl(215 30% 8%), hsl(215 30% 6%));
+  border: 1px solid rgba(70, 130, 200, 0.1);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.card-premium:hover {
+  border-color: rgba(70, 130, 200, 0.2);
+  box-shadow: 0 10px 30px -8px rgba(30, 60, 120, 0.3);
+}
+
+/* Blue accent elements */
+.bg-blue-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(70, 130, 200, 0.1), transparent 70%);
+}
+
+.text-blue-shimmer {
+  background: linear-gradient(135deg, #A0C8F0, #4A8FD0, #1E4A8C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: shimmer 3s ease infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

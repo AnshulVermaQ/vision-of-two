@@ -314,7 +314,7 @@ const Features = () => {
                 <span className="text-primary">action</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Watch how DevInsight AI transforms raw data into actionable career insights in minutes.
+                Watch how Leaf AI transforms raw data into actionable career insights in minutes.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -394,7 +394,7 @@ const Features = () => {
               Trusted by developers
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Join thousands of developers who've accelerated their careers with DevInsight AI
+              Join thousands of developers who've accelerated their careers with Leaf AI
             </p>
           </div>
 

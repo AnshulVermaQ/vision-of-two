@@ -34,7 +34,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: ["hello@devinsight.ai", "support@devinsight.ai"],
+      details: ["hello@LeafAI.ai", "support@LeafAI.ai"],
       action: "Send a message",
       color: "from-blue-500 to-cyan-500"
     },
@@ -153,7 +153,7 @@ const Contact = () => {
               transition={{ delay: 0.4 }}
               className="mt-6 text-lg text-muted-foreground"
             >
-              Have questions about DevInsight AI? Want to partner with us? 
+              Have questions about Leaf AI? Want to partner with us? 
               Our team is here to help you succeed.
             </motion.p>
           </div>

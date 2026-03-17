@@ -135,7 +135,7 @@ const HowItWorks = () => {
             >
               See how{" "}
               <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                DevInsight AI
+                Leaf AI
               </span>{" "}
               transforms your career
             </motion.h1>
@@ -253,7 +253,7 @@ const HowItWorks = () => {
                 <span className="text-primary">real numbers</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Developers who use DevInsight AI see an average improvement of 40% across all metrics within 30 days.
+                Developers who use Leaf AI see an average improvement of 40% across all metrics within 30 days.
               </p>
 
               <div className="space-y-4">

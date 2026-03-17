@@ -27,7 +27,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            DevInsight analyzes your code and credentials to find the shortest path to your next role. Resume, GitHub, portfolio — one unified score.
+            LeafAI analyzes your code and credentials to find the shortest path to your next role. Resume, GitHub, portfolio — one unified score.
           </p>
 
           <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row md:justify-center">
