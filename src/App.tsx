@@ -21,6 +21,8 @@ import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
 import Features from "./pages/Features";
 import { ThemeProvider } from "./components/ui/Theme-Provider";
+import Signup from "./components/signupPages/Signup";
+import Login from "./components/SignInPages/Signin";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +48,10 @@ const App = () => (
           <Route path="/contact" element = {<Contact/>} />
           <Route path = "how-it-works" element = {<HowItWorks/>} />
           <Route path="/features" element={<Features />} />
+          
+          <Route path="/signup" element={<Signup />} />
+          
+          <Route path="/signin" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>

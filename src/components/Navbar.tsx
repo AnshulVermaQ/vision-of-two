@@ -58,7 +58,7 @@ const Navbar = () => {
               <Zap className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="text-lg font-semibold tracking-tight text-foreground">
-              DevInsight<span className="text-primary">AI</span>
+              Leaf<span className="text-primary">AI</span>
             </span>
           </Link>
 
@@ -106,10 +106,10 @@ const Navbar = () => {
           {/* Desktop Actions */}
           <div className="hidden items-center gap-2 md:flex">
             <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-foreground">
-              <Link to="/dashboard">Log in</Link>
+              <Link to="/signin">Log in</Link>
             </Button>
             <Button size="sm" asChild className="shadow-sm">
-              <Link to="/dashboard">Get Started</Link>
+              <Link to="/signup">Get Started</Link>
             </Button>
           </div>
 
@@ -176,10 +176,10 @@ const Navbar = () => {
             {/* Mobile Actions */}
             <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
               <Button variant="outline" size="sm" asChild className="w-full">
-                <Link to="/dashboard">Log in</Link>
+                <Link to="/signin">Log in</Link>
               </Button>
               <Button size="sm" asChild className="w-full">
-                <Link to="/dashboard">Get Started</Link>
+                <Link to="/signup">Get Started</Link>
               </Button>
             </div>
           </div>

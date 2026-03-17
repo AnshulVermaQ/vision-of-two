@@ -52,11 +52,11 @@ const Footer = () => {
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
                 <Zap className="h-4 w-4 text-primary-foreground" />
               </div>
-              <span className="text-lg font-semibold text-foreground">DevInsight AI</span>
+              <span className="text-lg font-semibold text-foreground">Leaf AI</span>
             </div>
             
             <p className="mt-4 max-w-md text-sm text-muted-foreground leading-relaxed">
-              DevInsight analyzes your code and credentials to find the shortest path to your next role. 
+             LeafAI analyzes your code and credentials to find the shortest path to your next role. 
               Resume, GitHub, portfolio — one unified score.
             </p>
           </div>
@@ -88,7 +88,7 @@ const Footer = () => {
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             {/* Copyright */}
             <p className="text-xs text-muted-foreground">
-              © {currentYear} DevInsight AI. All rights reserved.
+              © {currentYear} Leaf AI. All rights reserved.
             </p>
 
             {/* Social Links */}

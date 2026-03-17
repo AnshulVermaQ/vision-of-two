@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,16 +16,17 @@
     --popover: 222 47% 7%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 239 84% 67%;
+    /* Premium Gold/Bronze gradient colors */
+    --primary: 42 78% 55%; /* Warm gold */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 17%;
+    --secondary: 37 67% 45%; /* Bronze */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 55%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217 33% 17%;
+    --accent: 35 45% 25%; /* Deep bronze accent */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
@@ -38,27 +40,27 @@
 
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 239 84% 67%;
+    --ring: 42 78% 55%; /* Matching gold */
 
     --radius: 0.75rem;
 
     --sidebar-background: 222 47% 4%;
-    --sidebar-foreground: 215 20% 55%;
-    --sidebar-primary: 239 84% 67%;
+    --sidebar-foreground: 215 20% 65%;
+    --sidebar-primary: 42 78% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent: 35 45% 20%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 239 84% 67%;
+    --sidebar-ring: 42 78% 55%;
 
     /* Custom tokens */
     --surface: 222 47% 7%;
     --surface-hover: 217 33% 14%;
-    --indigo-glow: 239 84% 67%;
+    --gold-glow: 42 78% 55%;
     --emerald: 142 71% 45%;
 
     --shadow-card: 0 0 0 1px rgba(255,255,255,0.07), 0 8px 16px -4px rgba(0,0,0,0.4);
-    --shadow-card-hover: 0 0 0 1px rgba(99,102,241,0.4), 0 12px 20px -4px rgba(0,0,0,0.5);
+    --shadow-card-hover: 0 0 0 1px rgba(212, 175, 55, 0.3), 0 12px 20px -4px rgba(0,0,0,0.5);
     --shadow-elevated: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 6px -1px rgba(0,0,0,0.2);
   }
 }
@@ -72,6 +74,28 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
     letter-spacing: -0.01em;
+    font-size: 16px; /* Base font size increased */
+  }
+
+  /* Increased font sizes for headings */
+  h1 {
+    @apply text-5xl md:text-7xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl font-semibold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-medium;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed;
   }
 
   code, .font-mono {
@@ -80,9 +104,21 @@
 }
 
 @layer utilities {
+  /* Premium gold gradient */
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(239 84% 80%));
+    background-image: linear-gradient(135deg, #D4AF37, #FBBF24, #B8860B);
+  }
+
+  /* Alternative premium gradient */
+  .text-gradient-premium {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #C5A028, #E5B73B, #A67C00);
+  }
+
+  /* Elegant serif font for headings */
+  .font-heading-premium {
+    font-family: 'Playfair Display', serif;
   }
 
   .shadow-card {
@@ -105,8 +141,9 @@
     background-color: hsl(var(--surface-hover));
   }
 
-  .glow-indigo {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), 0 0 60px rgba(99, 102, 241, 0.05);
+  /* Gold glow effects */
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.25), 0 0 60px rgba(212, 175, 55, 0.1);
   }
 
   .glow-emerald {
@@ -125,4 +162,36 @@
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  /* Larger text utilities */
+  .text-xl {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+
+  .text-2xl {
+    font-size: 2rem !important;
+    line-height: 2.5rem !important;
+  }
+
+  .text-3xl {
+    font-size: 2.5rem !important;
+    line-height: 3rem !important;
+  }
+}
+
+/* Premium button style */
+.btn-premium {
+  background: linear-gradient(135deg, #D4AF37, #B8860B);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.btn-premium:hover {
+  background: linear-gradient(135deg, #E5B73B, #C5A028);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4);
 }
