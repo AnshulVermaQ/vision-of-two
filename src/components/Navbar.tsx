@@ -189,7 +189,7 @@ const Navbar = () => {
       </div>
 
       {/* Spacer for fixed navbar - Updated to match new height */}
-      <div className="h-8" /> {/* Changed from h-6 to h-24 to match navbar height */}
+      <div className="h-6" /> {/* Changed from h-6 to h-24 to match navbar height */}
     </>
   );
 };
