@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useRegisterMutation } from "@/redux/api/api"; 
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,17 +27,34 @@ const Signup = () => {
     confirmPassword: ""
   });
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [error, setError] = useState("");
+
+  const [register] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     setIsLoading(true);
-    
-    // Simulate signup
-    setTimeout(() => {
+    try {
+      await register({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      }).unwrap();
+
+      navigate("/dashboard");
+    } catch (err: any) {
+      setError(err?.data?.message || "Registration failed. Please try again.");
+    } finally {
       setIsLoading(false);
-      // Redirect to dashboard
-      window.location.href = "/dashboard";
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,7 +152,7 @@ const Signup = () => {
                     <Zap className="h-4 w-4 text-white" />
                   </div>
                   <span className="text-lg font-bold">
-Leaf<span className="text-gradient-primary">AI</span>
+                    Leaf<span className="text-gradient-primary">AI</span>
                   </span>
                 </Link>
               </div>
@@ -176,6 +195,13 @@ Leaf<span className="text-gradient-primary">AI</span>
                   </span>
                 </div>
               </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="mb-4 rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                  {error}
+                </div>
+              )}
 
               {/* Signup Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
