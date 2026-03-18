@@ -3,21 +3,27 @@ import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, 
   Upload, 
-  Github, 
   FileText, 
-  Globe, 
-  CheckCircle
+  CheckCircle,
+  Sparkles
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Progress } from "@/components/ui/progress";
 
 const HeroSection = () => {
-  const [activeTab, setActiveTab] = useState<"resume" | "github" | "portfolio">("resume");
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  const handleAnalyze = () => {
+    setIsAnalyzing(true);
+    // Simulate analysis
+    setTimeout(() => setIsAnalyzing(false), 2000);
+  };
 
   return (
     <section className="relative overflow-hidden pt-32 pb-20">
-      {/* Gradient orb */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-primary/5 blur-3xl" />
+      {/* Gradient orbs */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[800px] w-[1000px] rounded-full bg-primary/5 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
       
       <div className="container relative">
         <motion.div
@@ -26,135 +32,99 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-3xl text-center"
         >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            AI-Powered Career Analysis
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs text-primary">
+            <Sparkles className="h-3 w-3" />
+            AI-Powered Resume Analysis
           </div>
 
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Turn your{" "}
-            <span className="text-gradient-primary">code</span> into{" "}
-            <span className="text-gradient-primary">career</span>
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+              resume
+            </span>{" "}
+            into{" "}
+            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              interviews
+            </span>
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-            Upload your resume, connect your GitHub, or share your portfolio. Get a unified score and actionable insights to land your next role.
+          <p className="mt-4 text-base text-muted-foreground max-w-xl mx-auto">
+            Upload your resume. Get an instant ATS score and actionable insights to land your next role.
           </p>
         </motion.div>
 
-        {/* Main Upload/Analysis Card */}
+        {/* Upload Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-12 mx-auto max-w-3xl"
+          className="mt-8 mx-auto max-w-2xl"
         >
-          <div className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-xl p-8 shadow-2xl">
-            {/* Source Tabs */}
-            <div className="flex gap-2 p-1 bg-muted/50 rounded-lg mb-6">
-              {[
-                { id: "resume", label: "Resume", icon: FileText },
-                { id: "github", label: "GitHub", icon: Github },
-                { id: "portfolio", label: "Portfolio", icon: Globe },
-              ].map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id as any)}
-                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-md text-sm font-medium transition-all ${
-                      activeTab === tab.id
-                        ? "bg-primary text-primary-foreground shadow-lg"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
+          <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-xl p-6 shadow-2xl">
+            {/* ENLARGED UPLOAD AREA */}
+            <div 
+              className={`border-2 border-dashed rounded-xl p-10 text-center transition-all duration-300 cursor-pointer group ${
+                isAnalyzing 
+                  ? "border-primary bg-primary/5" 
+                  : "border-border hover:border-primary/50 hover:bg-primary/5"
+              }`}
+              onClick={handleAnalyze}
+            >
+              <div className="flex justify-center mb-6">
+                <div className={`p-6 rounded-full transition-all duration-300 ${
+                  isAnalyzing 
+                    ? "bg-primary scale-110 animate-pulse" 
+                    : "bg-primary/10 group-hover:bg-primary/20 group-hover:scale-110"
+                }`}>
+                  <FileText className={`h-12 w-12 ${isAnalyzing ? "text-white" : "text-primary"}`} />
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-semibold mb-3">
+                {isAnalyzing ? "Analyzing..." : "Click to upload or drag and drop"}
+              </h3>
+              
+              <p className="text-sm text-muted-foreground mb-6">
+                PDF, DOCX, or TXT (Max 10MB)
+              </p>
 
-            {/* Upload Area */}
-            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary/50 transition-colors cursor-pointer group">
-              {activeTab === "resume" && (
-                <>
-                  <div className="flex justify-center mb-4">
-                    <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Upload className="h-8 w-8 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">Upload your Resume</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Drag and drop or click to upload (PDF, DOCX, TXT)
-                  </p>
-                  <Button size="lg" className="gap-2">
-                    Choose File <ArrowRight className="h-4 w-4" />
-                  </Button>
-                  <p className="text-xs text-muted-foreground mt-4">
-                    Free analysis • No credit card required
-                  </p>
-                </>
-              )}
+              {/* Button remains SAME size */}
+              <Button 
+                size="default" 
+                className={`gap-2 ${
+                  isAnalyzing ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isAnalyzing}
+                onClick={handleAnalyze}
+              >
+                {isAnalyzing ? (
+                  <>Analyzing <Sparkles className="h-4 w-4 animate-spin" /></>
+                ) : (
+                  <>Upload Resume <ArrowRight className="h-4 w-4" /></>
+                )}
+              </Button>
 
-              {activeTab === "github" && (
-                <>
-                  <div className="flex justify-center mb-4">
-                    <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Github className="h-8 w-8 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">Connect GitHub</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Analyze your repositories, commit patterns, and code quality
-                  </p>
-                  <Button size="lg" className="gap-2">
-                    Connect with GitHub <ArrowRight className="h-4 w-4" />
-                  </Button>
-                  <p className="text-xs text-muted-foreground mt-4">
-                    Read-only access • You control what we analyze
-                  </p>
-                </>
-              )}
-
-              {activeTab === "portfolio" && (
-                <>
-                  <div className="flex justify-center mb-4">
-                    <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Globe className="h-8 w-8 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">Enter Portfolio URL</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    We'll analyze your personal site, projects, and content
-                  </p>
-                  <div className="flex gap-2 max-w-md mx-auto">
-                    <input
-                      type="url"
-                      placeholder="https://yourportfolio.com"
-                      className="flex-1 rounded-lg bg-background border border-input px-4 py-3 text-sm"
-                    />
-                    <Button size="lg" className="gap-2">
-                      Analyze <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </>
+              {isAnalyzing && (
+                <div className="mt-6">
+                  <Progress value={45} className="h-1.5 w-full" />
+                  <p className="text-xs text-muted-foreground mt-2">Analyzing your resume...</p>
+                </div>
               )}
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-6">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">60s</div>
-                <div className="text-xs text-muted-foreground">Analysis Time</div>
+            <div className="grid grid-cols-3 gap-3 mt-4">
+              <div className="text-center p-2 rounded-lg bg-primary/5">
+                <div className="text-lg font-semibold text-primary">60s</div>
+                <div className="text-xs text-muted-foreground">Analysis</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">10K+</div>
-                <div className="text-xs text-muted-foreground">Profiles Analyzed</div>
+              <div className="text-center p-2 rounded-lg bg-primary/5">
+                <div className="text-lg font-semibold text-primary">10K+</div>
+                <div className="text-xs text-muted-foreground">Analyzed</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">85%</div>
-                <div className="text-xs text-muted-foreground">Success Rate</div>
+              <div className="text-center p-2 rounded-lg bg-primary/5">
+                <div className="text-lg font-semibold text-primary">85%</div>
+                <div className="text-xs text-muted-foreground">Success</div>
               </div>
             </div>
           </div>
@@ -165,18 +135,18 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-8"
+          className="mt-8 flex flex-wrap items-center justify-center gap-6"
         >
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <CheckCircle className="h-4 w-4 text-primary" />
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <CheckCircle className="h-3.5 w-3.5 text-primary" />
             <span>No credit card</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <CheckCircle className="h-4 w-4 text-primary" />
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <CheckCircle className="h-3.5 w-3.5 text-primary" />
             <span>60-second analysis</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <CheckCircle className="h-4 w-4 text-primary" />
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <CheckCircle className="h-3.5 w-3.5 text-primary" />
             <span>Privacy first</span>
           </div>
         </motion.div>

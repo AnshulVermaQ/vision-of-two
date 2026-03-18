@@ -23,6 +23,8 @@ import Features from "./pages/Features";
 import { ThemeProvider } from "./components/ui/Theme-Provider";
 import Signup from "./components/signupPages/Signup";
 import Login from "./components/SignInPages/Signin";
+import Profile from "./components/Profile";
+import { ScrollToTop } from "./components/ui/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,7 @@ const App = () => (
       <ThemeProvider defaultTheme="dark" storageKey="devinsight-theme">
     <TooltipProvider>
       <BrowserRouter>
+      <ScrollToTop/>
         <Navbar />
         <Routes>
           <Route path="/" element={<Index />} />
@@ -52,6 +55,7 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           
           <Route path="/signin" element={<Login />} />
+          <Route path="/Profile" element={<Profile />} />
         </Routes>
         <Footer />
       </BrowserRouter>

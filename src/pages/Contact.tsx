@@ -160,37 +160,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Info Cards */}
-      <section className="py-8 relative">
-        <div className="container">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon;
-              return (
-                <motion.div
-                  key={info.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="group relative rounded-xl border border-border/50 bg-background p-6 hover:shadow-lg transition-all hover:-translate-y-1"
-                >
-                  <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${info.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
-                  <div className={`inline-flex rounded-lg bg-gradient-to-r ${info.color} p-3 mb-4`}>
-                    <Icon className="h-5 w-5 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{info.title}</h3>
-                  {info.details.map((detail) => (
-                    <p key={detail} className="text-sm text-muted-foreground">{detail}</p>
-                  ))}
-                  <Button variant="link" className="mt-3 h-auto p-0 text-primary">
-                    {info.action} <ArrowRight className="ml-1 h-3 w-3" />
-                  </Button>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+    
 
       {/* Contact Form & Info */}
       <section className="py-16 md:py-24 relative">

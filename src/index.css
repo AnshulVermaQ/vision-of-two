@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -67,16 +65,16 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
     letter-spacing: -0.01em;
     font-size: 16px;
     font-weight: 300;
     color: hsl(210 15% 85%);
   }
 
-  /* Premium typography with elegant weights */
-  h1, h2, h3, h4 {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  /* All headings now use Poppins */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, sans-serif;
     font-weight: 500;
     letter-spacing: -0.02em;
     color: hsl(210 20% 92%);
@@ -104,17 +102,47 @@
 
   p {
     @apply text-base md:text-lg leading-relaxed;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-weight: 300;
     color: hsl(210 15% 75%);
   }
 
   a {
     @apply transition-colors duration-300;
+    font-family: 'Poppins', system-ui, sans-serif;
     color: hsl(210 15% 75%);
   }
 
   a:hover {
     color: hsl(210 60% 65%);
+  }
+
+  button, .btn, .button {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  input, textarea, select, option {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  li, ul, ol {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  span, div, section, article, nav, header, footer {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  label, legend, caption {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  blockquote, cite {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  table, th, td {
+    font-family: 'Poppins', system-ui, sans-serif;
   }
 }
 
@@ -155,13 +183,34 @@
     background-image: linear-gradient(135deg, #E0E8F5, #C0D0E8, #A0B8D8);
   }
 
-  /* Elegant serif font for headings */
-  .font-heading-premium {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  /* Poppins utilities - all weights */
+  .font-poppins {
+    font-family: 'Poppins', system-ui, sans-serif;
   }
 
-  .font-serif-premium {
-    font-family: 'Playfair Display', serif;
+  .font-poppins-light {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 300;
+  }
+
+  .font-poppins-regular {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 400;
+  }
+
+  .font-poppins-medium {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 500;
+  }
+
+  .font-poppins-semibold {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  .font-poppins-bold {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
   }
 
   /* Shadow utilities */
@@ -301,6 +350,7 @@
 .btn-premium {
   background: linear-gradient(135deg, #1E3A5F, #0A1A2F);
   color: hsl(210 20% 90%);
+  font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 400;
   padding: 0.75rem 2rem;
   border-radius: 9999px;
@@ -341,6 +391,7 @@
   background: transparent;
   border: 1px solid rgba(70, 130, 200, 0.3);
   color: hsl(210 60% 70%);
+  font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 400;
   padding: 0.75rem 2rem;
   border-radius: 9999px;
@@ -358,9 +409,9 @@
   border-color: rgba(70, 130, 200, 0.5);
 }
 
-/* Logo text style - Blue */
+/* Logo text style - Now using Poppins */
 .logo-premium {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
   letter-spacing: -0.02em;
