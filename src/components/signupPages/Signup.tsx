@@ -8,50 +8,64 @@ import {
   Lock, 
   User,
   ArrowRight,
-  Github,
   Chrome,
   Sparkles,
   CheckCircle
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRegisterMutation } from "@/redux/api/api"; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     password: "",
     confirmPassword: ""
   });
   const [agreeTerms, setAgreeTerms] = useState(false);
-  const [error, setError] = useState("");
 
   const [register] = useRegisterMutation();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const success = params.get("success");
+    const error = params.get("error");
+    const message = params.get("message");
+
+    if (success === "true") {
+      toast.success(message ? decodeURIComponent(message) : "Account created successfully!");
+      navigate("/dashboard", { replace: true });
+    } else if (error === "true") {
+      toast.error(message ? decodeURIComponent(message) : "Google signup failed. Please try again.");
+      navigate("/signup", { replace: true });
+    }
+  }, [location.search]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
     setIsLoading(true);
     try {
-      await register({
-        name: formData.name,
+      const result = await register({
+        fullName: formData.fullName,
         email: formData.email,
         password: formData.password,
       }).unwrap();
-
+      toast.success(result?.message || "Account created successfully!");
       navigate("/dashboard");
     } catch (err: any) {
-      setError(err?.data?.message || "Registration failed. Please try again.");
+      toast.error(err?.data?.message || "Registration failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -64,9 +78,8 @@ const Signup = () => {
     });
   };
 
-  const handleSocialSignup = (provider: string) => {
-    console.log(`Signing up with ${provider}`);
-    // Implement social signup logic
+  const handleGoogleSignup = () => {
+    window.open("http://localhost:3000/api/v1/user/google", "_self");
   };
 
   const pageVariants = {
@@ -90,7 +103,7 @@ const Signup = () => {
       variants={pageVariants}
       initial="initial"
       animate="animate"
-      className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center p-4 mt-10"
+      className="min-h-screen mt-24 bg-background relative overflow-hidden flex items-center justify-center p-4"
     >
       {/* Background Effects */}
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-r from-gold-glow/20 to-transparent blur-3xl" />
@@ -165,22 +178,14 @@ const Signup = () => {
               </div>
 
               {/* Social Signup Buttons */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
+              <div className="grid grid-cols-1 gap-3 mb-6">
                 <Button
                   variant="outline"
                   className="w-full bg-background/50 hover:bg-background"
-                  onClick={() => handleSocialSignup('github')}
-                >
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full bg-background/50 hover:bg-background"
-                  onClick={() => handleSocialSignup('google')}
+                  onClick={handleGoogleSignup}
                 >
                   <Chrome className="mr-2 h-4 w-4" />
-                  Google
+                  Continue with Google
                 </Button>
               </div>
 
@@ -196,24 +201,17 @@ const Signup = () => {
                 </div>
               </div>
 
-              {/* Error Message */}
-              {error && (
-                <div className="mb-4 rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-                  {error}
-                </div>
-              )}
-
               {/* Signup Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="fullName">Full Name</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
-                      id="name"
-                      name="name"
+                      id="fullName"
+                      name="fullName"
                       placeholder="John Doe"
-                      value={formData.name}
+                      value={formData.fullName}
                       onChange={handleChange}
                       className="pl-10"
                       required

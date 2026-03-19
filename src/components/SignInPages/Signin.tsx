@@ -7,12 +7,14 @@ import {
   Mail, 
   Lock, 
   ArrowRight,
-  Github,
   Chrome,
   Sparkles
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLoginMutation } from "@/redux/api/api";
+import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "sonner";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,16 +23,42 @@ const Login = () => {
     password: ""
   });
 
+  const [login] = useLoginMutation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const success = params.get("success");
+    const error = params.get("error");
+    const message = params.get("message");
+
+    if (success === "true") {
+      toast.success(message ? decodeURIComponent(message) : "Logged in successfully!");
+      navigate("/dashboard", { replace: true });
+    } else if (error === "true") {
+      toast.error(message ? decodeURIComponent(message) : "Google login failed. Please try again.");
+      navigate("/signin", { replace: true });
+    }
+  }, [location.search]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate login
-    setTimeout(() => {
+
+    try {
+      const result = await login({
+        email: formData.email,
+        password: formData.password,
+      }).unwrap();
+
+      toast.success(result?.message || "Logged in successfully!");
+      navigate("/dashboard");
+    } catch (err: any) {
+      toast.error(err?.data?.message || "Login failed. Please try again.");
+    } finally {
       setIsLoading(false);
-      // Redirect to dashboard
-      window.location.href = "/dashboard";
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,9 +68,8 @@ const Login = () => {
     });
   };
 
-  const handleSocialLogin = (provider: string) => {
-    console.log(`Logging in with ${provider}`);
-    // Implement social login logic
+  const handleGoogleLogin = () => {
+    window.open("http://localhost:3000/api/v1/user/google", "_self");
   };
 
   const pageVariants = {
@@ -59,7 +86,7 @@ const Login = () => {
       variants={pageVariants}
       initial="initial"
       animate="animate"
-      className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center p-8 mt-8"
+      className="min-h-screen mt-24 bg-background relative overflow-hidden flex items-center justify-center p-8"
     >
       {/* Background Effects */}
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-r from-gold-glow/20 to-transparent blur-3xl" />
@@ -93,22 +120,14 @@ const Login = () => {
           </div>
 
           {/* Social Login Buttons */}
-          <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="grid grid-cols-1 gap-3 mb-6">
             <Button
               variant="outline"
               className="w-full bg-background/50 hover:bg-background"
-              onClick={() => handleSocialLogin('github')}
-            >
-              <Github className="mr-2 h-4 w-4" />
-              GitHub
-            </Button>
-            <Button
-              variant="outline"
-              className="w-full bg-background/50 hover:bg-background"
-              onClick={() => handleSocialLogin('google')}
+              onClick={handleGoogleLogin}
             >
               <Chrome className="mr-2 h-4 w-4" />
-              Google
+              Continue with Google
             </Button>
           </div>
 
