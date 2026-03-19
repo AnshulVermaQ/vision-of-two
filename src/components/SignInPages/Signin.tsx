@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {server} from "../../../constants";
 import { 
   Zap, 
   Mail, 
@@ -69,7 +70,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.open("http://localhost:3000/api/v1/user/google", "_self");
+    window.open(`${server}/api/v1/user/google`, "_self");
   };
 
   const pageVariants = {
