@@ -198,7 +198,6 @@ const Login = () => {
           {/* Trust Badge */}
           <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
             <Sparkles className="h-3 w-3 text-gold-glow" />
-            <span>Free forever • No credit card required</span>
           </div>
         </div>
       </div>
