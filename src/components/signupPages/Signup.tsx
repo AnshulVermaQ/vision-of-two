@@ -2,43 +2,83 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { server } from "../../../constants";
 import { 
   Zap, 
   Mail, 
   Lock, 
   User,
   ArrowRight,
-  Github,
   Chrome,
   Sparkles,
   CheckCircle,
   Award,
   TrendingUp,
-  Code
+  Code,
+  Github
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRegisterMutation } from "@/redux/api/api"; 
+import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     password: "",
     confirmPassword: ""
   });
   const [agreeTerms, setAgreeTerms] = useState(false);
 
+  const [register] = useRegisterMutation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const success = params.get("success");
+    const error = params.get("error");
+    const message = params.get("message");
+
+    if (success === "true") {
+      toast.success(message ? decodeURIComponent(message) : "Account created successfully!");
+      navigate("/dashboard", { replace: true });
+    } else if (error === "true") {
+      toast.error(message ? decodeURIComponent(message) : "Google signup failed. Please try again.");
+      navigate("/signup", { replace: true });
+    }
+  }, [location.search, navigate]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      toast.error("Password must be at least 8 characters long.");
+      return;
+    }
+
     setIsLoading(true);
-    
-    // Simulate signup
-    setTimeout(() => {
+    try {
+      const result = await register({
+        fullName: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+      }).unwrap();
+      toast.success(result?.message || "Account created successfully!");
+      navigate("/dashboard");
+    } catch (err: any) {
+      toast.error(err?.data?.message || "Registration failed. Please try again.");
+    } finally {
       setIsLoading(false);
-      // Redirect to dashboard
-      window.location.href = "/dashboard";
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,8 +89,7 @@ const Signup = () => {
   };
 
   const handleSocialSignup = (provider: string) => {
-    console.log(`Signing up with ${provider}`);
-    // Implement social signup logic
+    window.open(`${server}/api/v1/user/${provider}`, "_self");
   };
 
   const pageVariants = {
@@ -90,7 +129,7 @@ const Signup = () => {
       variants={pageVariants}
       initial="initial"
       animate="animate"
-      className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden flex items-center justify-center p-4 mt-14"
+      className="min-h-screen mt-24 bg-background relative overflow-hidden flex items-center justify-center p-4"
     >
       {/* Sophisticated Background Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -231,16 +270,16 @@ const Signup = () => {
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-sm font-medium">
+                    <Label htmlFor="fullName" className="text-sm font-medium">
                       Full name
                     </Label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        id="name"
-                        name="name"
+                        id="fullName"
+                        name="fullName"
                         placeholder="John Doe"
-                        value={formData.name}
+                        value={formData.fullName}
                         onChange={handleChange}
                         className="pl-10 h-11 bg-background"
                         required
